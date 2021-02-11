@@ -1,0 +1,3 @@
+[submodule "Movie-Store"]
+	path = Movie-Store
+	url = https://github.com/vicmuchina/Movie-Store.git

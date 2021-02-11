@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Slicebox - 3D Image Slider</title>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <meta name="description" content="Slicebox - 3D Image Slider with Fallback" />
+        <meta name="keywords" content="jquery, css3, 3d, webkit, fallback, slider, css3, 3d transforms, slices, rotate, box, automatic" />
+		<meta name="author" content="Pedro Botelho for Codrops" />
+		<link rel="shortcut icon" href="../favicon.ico"> 
+        <link rel="stylesheet" type="text/css" href="css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="css/slicebox.css" />
+		<link rel="stylesheet" type="text/css" href="css/custom.css" />
+		
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+ integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+ <script src="https://kit.fontawesome.com/eb8d7cc040.js" crossorigin="anonymous"></script>
+
+
+		<script type="text/javascript" src="js/modernizr.custom.46884.js"></script>
+	</head>
+	<body>
+
+
+
+		<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+
+			<div class="container-fluid">
+				 <a class="navbar-brand" href="#"><img class='logo q'src="images/movieshop.png"></a>
+			
+				<button class="navbar-toggler" type="button" data-toggle='collapse' data-target='#navbarcollapsible'>
+				  <span class='navbar-toggler-icon'>
+				  </span>
+				</button>
+			
+			  <div class="collapse navbar-collapse" id="navbarcollapsible">
+				<ul class="navbar-nav ml-auto">
+				  <li class="nav-item active">
+					<a class='nav-link' href="https://www.netflix.com/ke-en/">Home</a>
+				  </li>
+					<li class="nav-item active">
+					<a class='nav-link' href="public/UploadMovie.html">Upload</a>
+				  </li>
+				  
+			
+				</ul>
+			  </div>
+			</div>
+			</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<div class="container">
+
+			
+
+			<h1>Slicebox <span>A fresh 3D image slider with graceful fallback</span></h1>
+			
+			<div class="more">
+				<ul id="sb-examples">
+					<li>More examples:</li>
+					<li class="selected"><a href="index.html">Example 1</a></li>
+					<li><a href="index2.html">Example 2</a></li>
+					<li><a href="index3.html">Example 3</a></li>
+					<li><a href="index4.html">Example 4</a></li>
+				</ul>
+			</div>
+
+			<div class="wrapper">
+
+				<ul id="sb-slider" class="sb-slider">
+					<li>
+						<a href="http://www.flickr.com/photos/strupler/2969141180" target="_blank"><img src="images/batman.jpg" alt="image1"/></a>
+						<div class="sb-description">
+							<h3>Creative Lifesaver</h3>
+						</div>
+					</li>
+					<li>
+						<a href="http://www.flickr.com/photos/strupler/2968268187" target="_blank"><img src="images/greenland.jpg" alt="image2"/></a>
+						<div class="sb-description">
+							<h3>Honest Entertainer</h3>
+						</div>
+					</li>
+					<li>
+						<a href="http://www.flickr.com/photos/strupler/2968114825" target="_blank"><img src="images/kungfupanda.jpg" alt="image1"/></a>
+						<div class="sb-description">
+							<h3>Brave Astronaut</h3>
+						</div>
+					</li>
+					<li>
+						<a href="http://www.flickr.com/photos/strupler/2968122059" target="_blank"><img src="images/bloodshot.jpg" alt="image1"/></a>
+						<div class="sb-description">
+							<h3>Affectionate Decision Maker</h3>
+						</div>
+					</li>
+					<li>
+						<a href="http://www.flickr.com/photos/strupler/2969119944" target="_blank"><img src="images/dhamal.jpg" alt="image1"/></a>
+						<div class="sb-description">
+							<h3>Faithful Investor</h3>
+						</div>
+					</li>
+					<li>
+						<a href="http://www.flickr.com/photos/strupler/2968126177" target="_blank"><img src="images/ironman.jpg" alt="image1"/></a>
+						<div class="sb-description">
+							<h3>Groundbreaking Artist</h3>
+						</div>
+					</li>
+					<li>
+						<a href="http://www.flickr.com/photos/strupler/2968945158" target="_blank"><img src="images/artemis.jpg" alt="image1"/></a>
+						<div class="sb-description">
+							<h3>Selfless Philantropist</h3>
+						</div>
+					</li>
+				</ul>
+
+				<div id="shadow" class="shadow"></div>
+
+				<div id="nav-arrows" class="nav-arrows">
+					<a href="#">Next</a>
+					<a href="#">Previous</a>
+				</div>
+
+				<div id="nav-dots" class="nav-dots">
+					<span class="nav-dot-current"></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+
+			</div><!-- /wrapper -->
+
+			<p class="info"><strong>Example 1:</strong> Default settings</p>
+
+		</div>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.slicebox.js"></script>
+		<script type="text/javascript">
+			$(function() {
+
+				var Page = (function() {
+
+					var $navArrows = $( '#nav-arrows' ).hide(),
+						$navDots = $( '#nav-dots' ).hide(),
+						$nav = $navDots.children( 'span' ),
+						$shadow = $( '#shadow' ).hide(),
+						slicebox = $( '#sb-slider' ).slicebox( {
+							onReady : function() {
+
+								$navArrows.show();
+								$navDots.show();
+								$shadow.show();
+
+							},
+							onBeforeChange : function( pos ) {
+
+								$nav.removeClass( 'nav-dot-current' );
+								$nav.eq( pos ).addClass( 'nav-dot-current' );
+
+							}
+						} ),
+						
+						init = function() {
+
+							initEvents();
+							
+						},
+						initEvents = function() {
+
+							// add navigation events
+							$navArrows.children( ':first' ).on( 'click', function() {
+
+								slicebox.next();
+								return false;
+
+							} );
+
+							$navArrows.children( ':last' ).on( 'click', function() {
+								
+								slicebox.previous();
+								return false;
+
+							} );
+
+							$nav.each( function( i ) {
+							
+								$( this ).on( 'click', function( event ) {
+									
+									var $dot = $( this );
+									
+									if( !slicebox.isActive() ) {
+
+										$nav.removeClass( 'nav-dot-current' );
+										$dot.addClass( 'nav-dot-current' );
+									
+									}
+									
+									slicebox.jump( i + 1 );
+									return false;
+								
+								} );
+								
+							} );
+
+						};
+
+						return { init : init };
+
+				})();
+
+				Page.init();
+
+			});
+		</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- alert -->
+<div class="container-fluid">
+	<div class="row ">
+	<div class="alert alert-primary">
+	  <p><strong>Real & Reel!</strong>buy one get one free</p>
+	</div>
+	</div>
+	</div>
+	<br>
+	<div class="container-fluid padding">
+	<div class="row padding">
+	<div class="col-12">
+	<a href="public/UploadMovie.html"><button type="button" class="btn btn-primary btn-lg button1">Upload Movie</button> 
+	</a>
+	</div>
+	</div>
+	</div>
+	<div class="container-fluid">
+	<div class="row text-center d-block mx-auto">
+	<h1 class="carousel-captiona display-2" style="color: black;">List of uploaded movies</h1>
+	</div>
+	</div>
+	<div class="container-fluid ">
+	<div class="row padding d-block mx-auto">
+	<div class="carousel-inner listbox">
+	-
+		<div class="carousel-item active">
+		  <img class='pica' src="images/uploaded/break.jpg" alt="1">
+		   <div class="carousel-caption mx-auto">
+			<table class="table a">
+			  
+		<thead class="thead-dark">
+		<tr>
+		  <th scope="col">#</th>
+		  <th scope="col">Movie Name</th>
+		  <th scope="col">Time</th>
+		  <th scope="col">Lead Actor</th>
+		  <th scope="col">Movie Poster</th>
+		  <th scope="col">Genre</th>
+		  <th scope="col">Rating</th>
+		  <th scope="col" colspan="2">Actions</th>
+		</tr>
+	  </thead>
+	  <tbody>
+		
+		<tr>
+		  <th scope="row">1</th>
+		  <td><strong>Birds of Prey</strong></td>
+		  <td>2h</td>
+		  <td>Taylor Swift</td>
+		  <td><img class="aa" src="images/uploaded/birds of prey.jpg"></td>
+		  <td>comedy</td>
+		  <td>PG</td>
+		  <td><a href="#"><button type="button" class="btn btn-primary">Edit</button></a> </td>
+		  <td><a href="#"><button type="button" class="btn btn-danger">Delete</button></a> </td>
+	
+		</tr>
+		<tr>
+		  <th scope="row">2</th>
+		  <td><strong>Climb</strong></td>
+		  <td>2h30</td>
+		  <td>Allan Brian</td>
+		  <td><img class="aa" src="images/uploaded/climb.jpg"></td>
+		  <td>Sports</td>
+		  <td>PG</td>
+		  <td><a href="#"><button type="button" class="btn btn-primary">Edit</button></a> </td>
+		  <td><a href="#"><button type="button" class="btn btn-danger">Delete</button></a> </td>
+	
+		</tr>
+		<tr>
+		  <th scope="row">3</th>
+		  <td><strong>Freaky</strong></td>
+		  <td>2h</td>
+		  <td>Jay Paul</td>
+		  <td><img class="aa" src="images/uploaded/freaky.jpg"></td>
+		  <td>thriller</td>
+		  <td>18+</td>
+		  <td><a href="#"><button type="button" class="btn btn-primary">Edit</button></a> </td>
+		  <td><a href="#"><button type="button" class="btn btn-danger">Delete</button></a> </td>
+	
+		</tr>
+		<tr>
+		  <th scope="row">4</th>
+		  <td><strong>Jokers</strong></td>
+		  <td>3h</td>
+		  <td>MC Steven</td>
+		  <td><img class="aa" src="images/uploaded/jokers.jpg"></td>
+		  <td>comedy</td>
+		  <td>13+</td>
+		  <td><a href="#"><button type="button" class="btn btn-primary">Edit</button></a> </td>
+		  <td><a href="#"><button type="button" class="btn btn-danger">Delete</button></a> </td>
+	
+		</tr>
+		<tr>
+		  <th scope="row">5</th>
+		  <td><strong>Onward</strong></td>
+		  <td>1h30</td>
+		  <td>Tommy Brandley </td>
+		  <td><img class="aa" src="images/uploaded/onward.jpg"></td>
+		  <td>kids</td>
+		  <td>PG</td>
+		  <td><a href="#"><button type="button" class="btn btn-primary">Edit</button></a> </td>
+		  <td><a href="#"><button type="button" class="btn btn-danger">Delete</button></a> </td>
+	
+		</tr>
+		<tr>
+		  <th scope="row">6</th>
+		  <td><strong>Pandora</strong></td>
+		  <td>3h15</td>
+		  <td>Silvia Red</td>
+		  <td><img class="aa" src="images/uploaded/pandora.jpg"></td>
+		  <td>horror</td>
+		  <td>PG</td>
+		  <td><a href="#"><button type="button" class="btn btn-primary">Edit</button></a> </td>
+		  <td><a href="#"><button type="button" class="btn btn-danger">Delete</button></a> </td>
+	
+		</tr>
+		<tr>
+		  <th scope="row">7</th>
+		  <td><strong>Pray</strong></td>
+		  <td>2h30</td>
+		  <td>Daniel James</td>
+		  <td><img class="aa" src="images/uploaded/pray.jpg"></td>
+		  <td>Christian movie</td>
+		  <td>PG</td>
+		  <td><a href="#"><button type="button" class="btn btn-primary">Edit</button></a> </td>
+		  <td><a href="#"><button type="button" class="btn btn-danger">Delete</button></a> </td>
+	
+		</tr>
+		<tr>
+		  <th scope="row">8</th>
+		  <td><strong>Promising Woman</strong></td>
+		  <td>3h</td>
+		  <td>Tony Grey</td>
+		  <td><img class="aa" src="images/uploaded/promising.jpg"></td>
+		  <td>drama</td>
+		  <td>18+</td>
+		  <td><a href="#"><button type="button" class="btn btn-primary">Edit</button></a> </td>
+		  <td><a href="#"><button type="button" class="btn btn-danger">Delete</button></a> </td>
+	
+		</tr>
+		<tr>
+		  <th scope="row">9</th>
+		  <td><strong>Wonder Woman</strong></td>
+		  <td>2h15</td>
+		  <td>Mary Jane</td>
+		  <td><img class="aa" src="images/uploaded/wonder woman.jpg"></td>
+		  <td>comic</td>
+		  <td>PG</td>
+		  <td><a href="#"><button type="button" class="btn btn-primary">Edit</button></a> </td>
+		  <td><a href="#"><button type="button" class="btn btn-danger">Delete</button></a> </td>
+	
+		</tr>
+	
+	  
+	  
+		
+	  </tbody>
+	  </table>
+	
+			 
+		</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	
+	<div class="container-fluid padding">
+	<div class="row text-center padding ">
+	  <div class="col-12">
+		<h2 style="color: black;">Connect</h2>
+		<hr style="width: 33%;margin-left: auto;margin-right: auto;border-top: 1px solid #000000;">
+	  </div> 
+	  <div class="col-12 social padding">
+		<a href="https://www.facebook.com/SparksUnlimitedMovies/"><i class="fab fa-facebook "></i></a>
+		<a href="https://www.instagram.com/moviesshop/?hl=en"><i class="fab fa-instagram "></i></a>
+		<a href="https://twitter.com/officialfye?lang=en"><i class="fab fa-twitter "></i></a>
+		<a href="https://www.youtube.com/results?search_query=netflix+movies+2020"><i class="fab fa-youtube"></i></a>
+	  </div>
+	</div>
+	</div>
+	
+	<footer>
+	  <div class="container-fluid padding">.
+	  <div class="row text-center">
+		<div class="col-md-6">
+		<img src="images/movieshop.png">
+		<hr class="light">
+		<p>+254797389366</p>
+		<p>email@vicmuchina1234@gmail.com</p>
+		<p>0100 street name</p>
+		<p>0000,city state</p>
+	  </div>
+	  
+	  <div class="col-md-6">
+		<hr class="light">
+		<h3>Offices</h3>
+		<hr class="light">
+		<p>Kipro center 3rd floor</p>
+		 <p>Yaya center 1st floor</p>
+		  <p>Garden City Mall 2nd floor</p>
+		   <p>Two Rivers 2nd floor</p>
+	  </div>
+	
+	  </div>
+	
+	</footer>
+	
+	
+
+
+
+
+
+	</body>
+</html>	

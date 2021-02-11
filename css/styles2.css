@@ -1,0 +1,40 @@
+.jumbotron{margin-top: 6rem;}
+#bodylogin{background-image:url(../images/batman.jpg) ;
+color:white;
+font-weight:bolder;}
+#bodysignup{background-image: url(../images/jungle.jpg);
+background-size: cover;
+color:grey;
+font-weight:bolder; }
+#bodyforgotpass{background-image: url(../images/thor.jpg);
+    background-repeat:no-repeat;
+background-size: cover;
+color: white;
+font-weight: bolder;}
+
+h2.q{text-align:center;color: indianred;text-decoration:underline indianred;}
+h2.p{text-align: center;color: white;text-decoration: underline rgb(218, 210, 210);}
+footer{background-color: #3f3f3f;
+    color:#d5d5d5;
+    padding-top: 2rem;  background: transparent !important;}
+    
+    hr.light{border-top: 1px solid #d5d5d5;
+    width: 75%;
+    margin-top: .8rem;
+    margin-bottom: 1rem}
+    
+    .aa{height:50px;width:50px;}
+    select {
+      width: 100%;
+      padding: 16px 20px;
+      border: none;
+      border-radius: 4px;
+      background-color: #f1f1f1;
+    }
+    input{display: inline-block;}
+    hr{width: 20% ;border-top: 1px solid #000000;}
+    
+    
+    .a{font-weight: 800}
+
+ .submitpassword{text-align:center ;}   
