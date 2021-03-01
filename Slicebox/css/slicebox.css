@@ -2,18 +2,23 @@
 	display: flex;
 position: relative;
 background-image: url(../images/uploaded/break.jpg);
-background-size: cover;}
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;}
 
-
+.flex-item{
+	align-content: center;
+	justify-content: center;
+}
 div img .break{
 	position: relative;
   }
 
-@media(max-width: 667px){
+/*@media(max-width: 667px){
 	.list{font-size: 40%;}
 }
 
-
+*/
 
 /* Slicebox Style */
 .sb-slider {
