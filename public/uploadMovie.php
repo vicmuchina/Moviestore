@@ -16,11 +16,8 @@
  <script src="https://kit.fontawesome.com/eb8d7cc040.js" crossorigin="anonymous"></script>
 
 </head>
-<<<<<<< HEAD
 <body >
-=======
 <body>
->>>>>>> 83285103da96adfe2a2fc9499bfc414401e377a1
 
 <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
 
@@ -54,7 +51,7 @@
 <div class="container-fluid padding">
 <div class="row padding">
 <div class="col-12">
-<a href="../index.html"><button type="button" class="btn btn-primary btn-lg button1">Back to Homepage</button> 
+<a href="../Slicebox/index.html"><button type="button" class="btn btn-primary btn-lg button1">Back to Homepage</button> 
 </a>
 </div>
 </div>
@@ -89,7 +86,7 @@
          <div class="col">
           <div class="form-group">
 		      <label for="duration">Duration</label>
-	<input list="duration" name="duration" size="60" placeholder="Time in hours">
+	<input list="duration" name="duration"  placeholder="Time in hours" class='form-control'>
                <datalist id="duration" >
                   <option value="1h">1h</option>
                   <option value="1h15">1h15</option>
@@ -180,6 +177,53 @@ if (isset($_POST['submit'])){
   $duration=$_POST['duration'];
   $rating=$_POST['rating'];
   $genre=$_POST['genre'];
+
+$servername="localhost";
+$username="root";
+$password="";
+$dbname="movieshop";
+
+$conn=new mysqli($servername,$username,$password,$dbname);
+// check connection
+if($conn->connect_error){
+  die("Connection failed: " . $conn->connect_error);
+} else{
+  echo "Connection successful<br>";
+}
+
+// // create a data base
+// $sql='CREATE DATABASE school';
+// // check if database has been created
+// if ($conn->query($sql)===TRUE){
+//   echo "database has been created";}
+// else{echo "failed to create database" . $conn->error."<br>";}
+
+// create two tables students and staff
+$sql="CREATE TABLE movies_uploaded(
+id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+moviename VARCHAR(30) NOT NULL,
+leader_actor VARCHAR(30) NOT NULL,
+duration VARCHAR(50),
+rating VARCHAR(50),
+genre VARCHAR(50) NOT NULL,
+reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+)";
+
+if($conn->query($sql)===TRUE){
+
+  echo "movies_uploaded table created<br>";
+}
+else{echo "movies_uploaded not created".$conn->error."<br>";
+}
+$sql = "INSERT INTO movies_uploaded ( moviename, leader_actor, duration, rating, genre)
+VALUES ('$moviename', '$leaderactor', '$duration','$rating','$genre')";
+
+if ($conn->query($sql) === TRUE) {
+  echo "New record created successfully";
+} else {
+  echo "Error: " . $sql . "<br>" . $conn->error;
+}
+
 
 echo"<div class='container container-fluid m '>
        <div class='row'>
@@ -277,22 +321,6 @@ echo"<div class='container container-fluid m '>
 </footer>
 
 
-<<<<<<< HEAD
-=======
 
-
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> 83285103da96adfe2a2fc9499bfc414401e377a1
 </body>
 </html>

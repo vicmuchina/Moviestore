@@ -144,7 +144,8 @@ height: 100%;}
  	table{transform:scale(0.8); }
  }
  @media(max-width: 617px){
- 	table{transform:scale(0.7); }
+ 	table{transform:scale(0.8);
+ 	margin-left: 0px; }
  }
 
 .social a{font-size: 4em;
